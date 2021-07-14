@@ -4,25 +4,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 function Demo() {
-const insets = useSafeAreaInsets();
-
   return (
-    <View
-      style={{ 
-
-        paddingTop:insets.top,
-        paddingBottom: insets.bottom,
-
-        flex: 1, 
-        justifyContent: 'space-between', 
-        alignItems: 'center' }}
+    <SafeAreaView
+      style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
     >
       <Text>This is top text.</Text>
       <Text>This is bottom text.</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 const Stack = createStackNavigator();

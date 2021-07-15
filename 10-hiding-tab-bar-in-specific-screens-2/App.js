@@ -28,16 +28,6 @@ function Settings(){
   </Text>
 }
 
-function HomeStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Settings" component={Settings} />
-    </Stack.Navigator>
-  );
-}
-
 function NotificationsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -54,14 +44,25 @@ function FeedScreen({ navigation }) {
   );
 }
 
+function HomeTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Feed" component={FeedScreen} />
+      <Tab.Screen name="Notifications" component={NotificationsScreen} />
+    </Tab.Navigator>
+  );
+}
+
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-            <Tab.Screen name="Home" component={HomeStack} />
-            <Tab.Screen name="Feed" component={FeedScreen} />
-            <Tab.Screen name="Notifications" component={NotificationsScreen} />
-      </Tab.Navigator>
+          <Stack.Navigator>
+            <Stack.Screen name="Home 1 " component={HomeTabs} />
+            <Stack.Screen name="Profile 1 " component={Profile} />
+            <Stack.Screen name="Settings 1 " component={Settings} />
+          </Stack.Navigator>
     </NavigationContainer>
    
   );

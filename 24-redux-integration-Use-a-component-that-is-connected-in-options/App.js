@@ -40,27 +40,26 @@ function Counter({ count, dispatch, navigation }) {
 
       <Button
         title="Go to static count screen"
-        onPress={() =>
-          navigation.navigate('StaticCounter', {
-            count,
-          })
-        }
+        onPress={() => navigation.navigate('StaticCounter')}
       />
     </View>
   );
 }
 
 // Another screen!
-function StaticCounter({ route }) {
+function StaticCounter({ count }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.paragraph}>{route.params.count}</Text>
+      <Text style={styles.paragraph}>{count}</Text>
     </View>
   );
 }
 
 // Connect the screens to Redux
 let CounterContainer = connect(state => ({ count: state.count }))(Counter);
+let StaticCounterContainer = connect(state => ({ count: state.count }))(
+  StaticCounter
+);
 
 // Create our stack navigator
 let RootStack = createStackNavigator();
@@ -74,8 +73,7 @@ export default function App() {
           <RootStack.Screen name="Counter" component={CounterContainer} />
           <RootStack.Screen
             name="StaticCounter"
-            component={StaticCounter}
-            options={({ route }) => ({ title: route.params.count })}
+            component={StaticCounterContainer}
           />
         </RootStack.Navigator>
       </NavigationContainer>
